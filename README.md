@@ -1,0 +1,137 @@
+# _pathroot
+
+**Modular Devtools Environment Management**
+
+A cross-platform system for managing development tool environments with discoverable paths, environment metadata, and automation support.
+
+## Overview
+
+_pathroot solves the "where are my tools?" problem by establishing:
+
+1. **`_pathroot`** - A global marker file at the drive/filesystem root pointing to your devtools
+2. **`_envbase`** - Local JSON metadata describing the environment
+
+```
+C:\_pathroot          → Contains: "C:\devtools"
+C:\devtools\_envbase  → Contains: {"env": "devtools", "profile": "default", ...}
+```
+
+## Quick Start
+
+### Windows
+
+```batch
+:: Run the scaffolder
+scripts\windows\automkdir.bat
+
+:: Inspect your environment
+powershell -File scripts\windows\envbase.ps1
+```
+
+### Linux/macOS/WSL
+
+```bash
+# Initialize
+./scripts/posix/pathroot.sh init /opt/devtools
+
+# Inspect
+./scripts/posix/pathroot.sh info
+
+# Add to shell (bash/zsh)
+eval $(./scripts/posix/pathroot.sh env)
+```
+
+### Deno (Cross-platform)
+
+```bash
+# Validate installation
+deno task validate
+
+# Use as library
+deno add @pathroot/tools
+```
+
+```typescript
+import { discover, loadEnvbase } from "@pathroot/tools";
+
+const result = await discover();
+if (result.found) {
+  const envbase = await loadEnvbase(result.devtoolsRoot!);
+  console.log(`Profile: ${envbase?.profile}`);
+}
+```
+
+## Directory Structure
+
+```
+C:\devtools\
+├── bin\        # Executables (add to PATH)
+├── scripts\    # Utility scripts
+├── config\     # Configuration files
+├── logs\       # Log outputs
+├── temp\       # Temporary files
+├── tools\      # Installed packages
+├── _envbase    # Environment metadata
+
+C:\_pathroot    # Global root marker
+```
+
+## Documentation
+
+- [Wiki](wiki/Home.md) - Full documentation
+- [PDF Guide](docs/pathroot-guide.adoc) - Printable reference (build with asciidoctor-pdf)
+- [FAQ](wiki/FAQ.md) - Frequently Asked Questions
+
+## Components
+
+| Component | Description |
+|-----------|-------------|
+| `scripts/windows/` | Windows batch and PowerShell scripts |
+| `scripts/posix/` | Bash scripts for Linux/macOS/WSL |
+| `ada/tui/` | Ada-based Terminal User Interface |
+| `src/` | Deno/TypeScript library |
+
+## Integration
+
+- **[RapidEE](https://www.rapidee.com/)** - Visual Windows environment variable management
+- **[modshells](https://gitlab.com/hyperpolymath/modshells)** - Modular shell configurations
+- **[nano-aider](https://gitlab.com/hyperpolymath/nano-aider)** - AI-assisted development
+
+See [Integration Guide](wiki/Integration.md) for details.
+
+## TUI
+
+The Ada-based TUI provides interactive management:
+
+```bash
+# Build (requires GNAT)
+cd ada/tui && gprbuild -P pathroot_tui.gpr
+
+# Run
+./pathroot-tui
+
+# Transaction mode (for scripting)
+echo "PATHROOT:QUERY:ENV" | ./pathroot-tui --transaction
+```
+
+## Building the PDF
+
+```bash
+# Install asciidoctor-pdf
+gem install asciidoctor-pdf
+
+# Generate PDF
+asciidoctor-pdf docs/pathroot-guide.adoc -o docs/pathroot-guide.pdf
+```
+
+## License
+
+AGPL-3.0-or-later
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+---
+
+*Because your Head of DevOps deserves joy.*
