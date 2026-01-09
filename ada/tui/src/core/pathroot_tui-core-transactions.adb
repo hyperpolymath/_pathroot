@@ -9,6 +9,8 @@ with Ada.Strings.Fixed;     use Ada.Strings.Fixed;
 with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
 
 with Pathroot_TUI.Core.Envbase;
+with Pathroot_TUI.Core.Links;
+with Pathroot_TUI.Core.Pathenv;
 
 package body Pathroot_TUI.Core.Transactions is
 
@@ -124,29 +126,103 @@ package body Pathroot_TUI.Core.Transactions is
             end;
 
          when Cmd_Create_Link =>
-            --  Link creation is platform-specific
-            Output_Response
-              (Status_Warning,
-               "LINK",
-               """Link creation not yet implemented""");
+            --  Extract link and target paths from command
+            --  Format: PATHROOT:LINK:link_path:target_path
+            declare
+               use Pathroot_TUI.Core.Links;
+               Pattern   : constant String := "LINK:";
+               Pos       : constant Natural := Index (Command, Pattern);
+               Params    : constant String :=
+                 Command (Pos + Pattern'Length .. Command'Last);
+               Sep_Pos   : constant Natural := Index (Params, ":");
+               Error_Msg : Unbounded_String;
+               Success   : Boolean;
+            begin
+               if Sep_Pos = 0 then
+                  Output_Response
+                    (Status_Error,
+                     "LINK",
+                     """Invalid format. Expected PATHROOT:LINK:link_path:target_path""");
+               else
+                  declare
+                     Link_Path   : constant String := Params (Params'First .. Sep_Pos - 1);
+                     Target_Path : constant String := Params (Sep_Pos + 1 .. Params'Last);
+                  begin
+                     Success := Create_Link (Link_Path, Target_Path, Error_Msg);
+                     if Success then
+                        Output_Response
+                          (Status_OK,
+                           "LINK",
+                           "{""link"": """ & Link_Path &
+                           """, ""target"": """ & Target_Path & """}");
+                     else
+                        Output_Response
+                          (Status_Error,
+                           "LINK",
+                           """" & To_String (Error_Msg) & """");
+                     end if;
+                  end;
+               end if;
+            end;
 
          when Cmd_Audit_Links =>
-            Output_Response
-              (Status_Warning,
-               "AUDIT:LINKS",
-               """Link audit not yet implemented""");
+            declare
+               use Pathroot_TUI.Core.Links;
+               Result : constant Audit_Result := Audit_Links (Devtools_Root);
+            begin
+               Output_Response
+                 (Status_OK,
+                  "AUDIT:LINKS",
+                  Audit_To_JSON (Result));
+            end;
 
          when Cmd_Path_Add =>
-            Output_Response
-              (Status_Warning,
-               "PATH:ADD",
-               """PATH modification not yet implemented""");
+            --  Extract path entry from command
+            --  Format: PATHROOT:PATH:ADD:path_entry
+            declare
+               use Pathroot_TUI.Core.Pathenv;
+               Pattern    : constant String := "PATH:ADD:";
+               Pos        : constant Natural := Index (Command, Pattern);
+               Entry_Path : constant String :=
+                 Command (Pos + Pattern'Length .. Command'Last);
+               Result     : constant Path_Result := Add_To_Path (Entry_Path);
+            begin
+               if Result.Success then
+                  Output_Response
+                    (Status_OK,
+                     "PATH:ADD",
+                     Result_To_JSON (Result));
+               else
+                  Output_Response
+                    (Status_Error,
+                     "PATH:ADD",
+                     Result_To_JSON (Result));
+               end if;
+            end;
 
          when Cmd_Path_Remove =>
-            Output_Response
-              (Status_Warning,
-               "PATH:REMOVE",
-               """PATH modification not yet implemented""");
+            --  Extract path entry from command
+            --  Format: PATHROOT:PATH:REMOVE:path_entry
+            declare
+               use Pathroot_TUI.Core.Pathenv;
+               Pattern    : constant String := "PATH:REMOVE:";
+               Pos        : constant Natural := Index (Command, Pattern);
+               Entry_Path : constant String :=
+                 Command (Pos + Pattern'Length .. Command'Last);
+               Result     : constant Path_Result := Remove_From_Path (Entry_Path);
+            begin
+               if Result.Success then
+                  Output_Response
+                    (Status_OK,
+                     "PATH:REMOVE",
+                     Result_To_JSON (Result));
+               else
+                  Output_Response
+                    (Status_Error,
+                     "PATH:REMOVE",
+                     Result_To_JSON (Result));
+               end if;
+            end;
 
          when Cmd_Unknown =>
             Output_Response
