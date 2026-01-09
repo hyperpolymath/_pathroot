@@ -4,7 +4,9 @@
 --  SPDX-License-Identifier: AGPL-3.0-or-later
 --  Copyright (C) 2025 Hyper Polymath
 
-with Ada.Text_IO; use Ada.Text_IO;
+with Ada.Text_IO;            use Ada.Text_IO;
+with Ada.Environment_Variables;
+with Ada.Strings.Fixed;      use Ada.Strings.Fixed;
 
 package body Pathroot_TUI.UI.Panels is
 
@@ -12,15 +14,98 @@ package body Pathroot_TUI.UI.Panels is
    Term_Rows : Natural := 24;
    Term_Cols : Natural := 80;
 
+   --  Terminal state tracking
+   UI_Initialized : Boolean := False;
+
+   -----------------------
+   -- Detect_Term_Size --
+   -----------------------
+
+   procedure Detect_Terminal_Size is
+      Lines_Str : constant String :=
+        (if Ada.Environment_Variables.Exists ("LINES")
+         then Ada.Environment_Variables.Value ("LINES")
+         else "");
+      Cols_Str  : constant String :=
+        (if Ada.Environment_Variables.Exists ("COLUMNS")
+         then Ada.Environment_Variables.Value ("COLUMNS")
+         else "");
+   begin
+      --  Try to get terminal size from environment variables
+      if Lines_Str'Length > 0 then
+         begin
+            Term_Rows := Natural'Value (Lines_Str);
+         exception
+            when others =>
+               Term_Rows := 24;  --  Default fallback
+         end;
+      end if;
+
+      if Cols_Str'Length > 0 then
+         begin
+            Term_Cols := Natural'Value (Cols_Str);
+         exception
+            when others =>
+               Term_Cols := 80;  --  Default fallback
+         end;
+      end if;
+
+      --  Ensure minimum dimensions
+      if Term_Rows < 10 then
+         Term_Rows := 24;
+      end if;
+      if Term_Cols < 40 then
+         Term_Cols := 80;
+      end if;
+   end Detect_Terminal_Size;
+
+   -----------------------
+   -- Setup_Raw_Mode --
+   -----------------------
+
+   procedure Setup_Terminal_Mode is
+   begin
+      --  Enable cursor visibility and alternate screen buffer
+      --  CSI ?1049h = enable alternate screen buffer
+      --  CSI ?25h = show cursor
+      Put (ASCII.ESC & "[?1049h");  --  Enter alternate screen
+      Put (ASCII.ESC & "[?25h");    --  Show cursor
+      Flush;
+   end Setup_Terminal_Mode;
+
+   --------------------------
+   -- Restore_Terminal_Mode --
+   --------------------------
+
+   procedure Restore_Terminal_Mode is
+   begin
+      --  Restore terminal to normal state
+      --  CSI ?1049l = disable alternate screen buffer
+      Put (ASCII.ESC & "[?1049l");  --  Exit alternate screen
+      Flush;
+   end Restore_Terminal_Mode;
+
    -------------------
    -- Initialize_UI --
    -------------------
 
    procedure Initialize_UI is
    begin
-      --  Basic terminal setup
-      --  In a full implementation, this would initialize ncurses/terminal
+      if UI_Initialized then
+         return;  --  Already initialized
+      end if;
+
+      --  Detect terminal dimensions from environment
+      Detect_Terminal_Size;
+
+      --  Setup terminal mode (alternate screen buffer for clean exit)
+      Setup_Terminal_Mode;
+
+      --  Clear screen and position cursor at home
       Clear_Screen;
+
+      --  Mark as initialized
+      UI_Initialized := True;
    end Initialize_UI;
 
    -----------------
@@ -29,8 +114,20 @@ package body Pathroot_TUI.UI.Panels is
 
    procedure Finalize_UI is
    begin
+      if not UI_Initialized then
+         return;  --  Nothing to clean up
+      end if;
+
+      --  Clear the alternate screen
       Clear_Screen;
+
+      --  Show goodbye message before switching back
       Put_Line ("Goodbye from _pathroot TUI!");
+
+      --  Restore normal terminal mode
+      Restore_Terminal_Mode;
+
+      UI_Initialized := False;
    end Finalize_UI;
 
    ------------------
