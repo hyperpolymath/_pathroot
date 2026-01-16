@@ -1,32 +1,67 @@
-;;; STATE.scm — rsr-template-repo
-;; SPDX-License-Identifier: AGPL-3.0-or-later
-;; SPDX-FileCopyrightText: 2025 Jonathan D.A. Jewell
+;; SPDX-License-Identifier: PMPL-1.0
+;; STATE.scm - Project state for _pathroot (Mustfile)
 
-(define metadata
-  '((version . "0.2.0") (updated . "2025-12-17") (project . "rsr-template-repo")))
+(state
+  (metadata
+    (version "1.0.0")
+    (schema-version "1.0")
+    (created "2025-12-15")
+    (updated "2025-01-16")
+    (project "_pathroot")
+    (repo "hyperpolymath/_pathroot"))
 
-(define current-position
-  '((phase . "v0.2 - Security Hardening")
-    (overall-completion . 60)
+  (project-context
+    (name "Mustfile")
+    (tagline "Type-safe, contract-driven orchestration across 22 shells")
+    (tech-stack ("nickel" "ada" "deno")))
+
+  (current-position
+    (phase "mvp")
+    (overall-completion 100)
     (components
-     ((rsr-compliance ((status . "complete") (completion . 100)))
-      (security-hardening ((status . "complete") (completion . 100)))
-      (ci-cd ((status . "complete") (completion . 100)))
-      (package-management ((status . "complete") (completion . 100)))
-      (documentation ((status . "in-progress") (completion . 50)))))))
+      ((mustfile-spec . 100)
+       (nicaug-engine . 100)
+       (shell-support . 100)
+       (deployment-routes . 100)
+       (documentation . 100)))
+    (working-features
+      ("Mustfile global authority specification"
+       "Nickel-augmented (nicaug) configuration"
+       "22 shell environment support"
+       "Multi-platform deployment (Fedora, Debian, Android, macOS, Windows, Minix)"
+       "RSR compliance")))
 
-(define blockers-and-issues '((critical ()) (high-priority ())))
+  (route-to-mvp
+    (milestones
+      ((name "Specification")
+       (status "complete")
+       (items
+         ("Mustfile format"
+          "Justfile integration"
+          "Nickel configuration")))
+      ((name "Shell Support")
+       (status "complete")
+       (items
+         ("Universal 22 shells"
+          "Cross-platform portability")))
+      ((name "MVP 1.0")
+       (status "complete")
+       (items
+         ("Documentation"
+          "Cookbook"
+          "Bootstrap scripts")))))
 
-(define critical-next-actions
-  '((immediate (("Expand documentation" . medium)))
-    (this-week (("Add language-specific templates" . medium)
-                ("Create example projects" . low)))))
+  (blockers-and-issues
+    (critical ())
+    (high ())
+    (medium
+      (("TypeScript to ReScript" . "src/*.ts files need conversion per RSR")))
+    (low ()))
 
-(define session-history
-  '((snapshots
-     ((date . "2025-12-15") (session . "initial") (notes . "SCM files added"))
-     ((date . "2025-12-17") (session . "security-review")
-      (notes . "SHA-pinned all GitHub Actions, added flake.nix fallback")))))
-
-(define state-summary
-  '((project . "rsr-template-repo") (completion . 60) (blockers . 0) (updated . "2025-12-17")))
+  (critical-next-actions
+    (immediate ())
+    (this-week
+      ("Tag v1.0.0 release"))
+    (this-month
+      ("Convert TypeScript to ReScript"
+       "Add more deployment examples"))))
