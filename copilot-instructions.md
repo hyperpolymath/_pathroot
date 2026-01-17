@@ -136,7 +136,7 @@ When reviewing code in this repository, apply these standards strictly.
 
 **Reject:**
 - Dependencies with known vulnerabilities
-- Dependencies with incompatible licences (GPL in MIT project, etc.)
+- Dependencies with incompatible licences (GPL in PMPL-1.0 project, etc.)
 - Vendored code without licence attribution
 
 ---

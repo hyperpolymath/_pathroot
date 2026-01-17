@@ -1,7 +1,7 @@
 --  RSR Adapter - Repository Starter/Customization Tool
 --  Provides interactive customization of repository templates
 --
---  SPDX-License-Identifier: AGPL-3.0-or-later
+--  SPDX-License-Identifier: PMPL-1.0
 --  Copyright (C) 2025 Hyper Polymath
 
 with Ada.Text_IO;            use Ada.Text_IO;

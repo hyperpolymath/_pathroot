@@ -1,7 +1,7 @@
 --  _pathroot TUI - UI Panels Specification
 --  Terminal UI panel management
 --
---  SPDX-License-Identifier: AGPL-3.0-or-later
+--  SPDX-License-Identifier: PMPL-1.0
 --  Copyright (C) 2025 Hyper Polymath
 
 with Pathroot_TUI.Core.Envbase; use Pathroot_TUI.Core.Envbase;

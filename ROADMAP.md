@@ -1,11 +1,10 @@
-// SPDX-License-Identifier: PMPL-1.0
-= Roadmap
+# Roadmap
 
 This document outlines the security and development roadmap for this template repository.
 
-== Current Status
+## Current Status
 
-=== Completed Security Measures
+### Completed Security Measures
 
 - [x] **SHA-pinned GitHub Actions** - All workflow actions use commit SHA instead of version tags
 - [x] **CodeQL Analysis** - Automated static analysis for JavaScript/TypeScript (expandable to other languages)
@@ -20,13 +19,13 @@ This document outlines the security and development roadmap for this template re
 
 ---
 
-== Roadmap
+## Roadmap
 
-=== Phase 1: Foundation Security (Current)
+### Phase 1: Foundation Security (Current)
 
 Focus: Establish baseline security controls for the template repository.
 
-==== Completed
+#### Completed
 - [x] SHA-pin all GitHub Actions to specific commits
 - [x] Configure Dependabot for all relevant package ecosystems
 - [x] Create comprehensive security policy (SECURITY.md)
@@ -36,11 +35,11 @@ Focus: Establish baseline security controls for the template repository.
 - [x] Configure issue templates with security links
 - [x] Disable blank issues to enforce structured reporting
 
-==== In Progress
+#### In Progress
 - [ ] Enable GitHub branch protection rules (requires manual setup)
 - [ ] Configure required status checks for main branch
 
-==== Recommended Manual Steps
+#### Recommended Manual Steps
 These require repository admin access:
 1. **Enable branch protection** on `main`:
    - Require pull request reviews (1+ approvals)
@@ -57,11 +56,11 @@ These require repository admin access:
 
 ---
 
-=== Phase 2: Enhanced Security
+### Phase 2: Enhanced Security
 
 Focus: Add advanced security tooling and compliance checks.
 
-==== Planned
+#### Planned
 - [ ] Add SBOM (Software Bill of Materials) generation
 - [ ] Integrate container scanning (if using containers)
 - [ ] Add license compliance checking
@@ -69,18 +68,18 @@ Focus: Add advanced security tooling and compliance checks.
 - [ ] Add SLSA provenance generation for releases
 - [ ] Create security scorecard workflow (OpenSSF Scorecard)
 
-==== Future Considerations
+#### Future Considerations
 - [ ] SARIF upload integration for security findings
 - [ ] Custom CodeQL queries for project-specific vulnerabilities
 - [ ] Integration with private vulnerability reporting
 
 ---
 
-=== Phase 3: Operational Security
+### Phase 3: Operational Security
 
 Focus: Runtime and operational security measures.
 
-==== Planned
+#### Planned
 - [ ] Add release signing workflow
 - [ ] Create security-focused release checklist
 - [ ] Implement audit logging for sensitive operations
@@ -88,55 +87,49 @@ Focus: Runtime and operational security measures.
 
 ---
 
-== Language-Specific Security
+## Language-Specific Security
 
 When adapting this template, enable relevant security tools:
 
-=== Rust
-[source,yaml]
-----
-= In codeql.yml, uncomment:
+### Rust
+```yaml
+# In codeql.yml, uncomment:
 - language: rust
   build-mode: manual
-[source,]
-----
+```
 - Enable `cargo audit` in CI
 - Add `cargo deny` for license/vulnerability checks
 
-=== JavaScript/TypeScript
+### JavaScript/TypeScript
 - Already enabled in CodeQL
 - Consider adding `npm audit` to CI
 - Add ESLint security rules
 
-=== Python
-[source,yaml]
-----
-= In codeql.yml, uncomment:
+### Python
+```yaml
+# In codeql.yml, uncomment:
 - language: python
   build-mode: none
-[source,]
-----
+```
 - Add `bandit` for Python security linting
 - Add `safety` for dependency vulnerability scanning
 
-=== Go
-[source,yaml]
-----
-= In codeql.yml, uncomment:
+### Go
+```yaml
+# In codeql.yml, uncomment:
 - language: go
   build-mode: autobuild
-[source,]
-----
+```
 - Add `govulncheck` for vulnerability scanning
 - Add `gosec` for security linting
 
-=== Elixir
+### Elixir
 - Add `sobelow` for security analysis
 - Add `mix audit` for dependency vulnerabilities
 
 ---
 
-== Security Contacts
+## Security Contacts
 
 - **Report vulnerabilities**: [Security Advisories](https://github.com/hyperpolymath/template-repo/security/advisories/new)
 - **Security policy**: [SECURITY.md](SECURITY.md)
@@ -144,7 +137,7 @@ When adapting this template, enable relevant security tools:
 
 ---
 
-== Version History
+## Version History
 
 | Date | Version | Changes |
 |------|---------|---------|

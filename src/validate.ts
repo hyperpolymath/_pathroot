@@ -2,7 +2,7 @@
  * _pathroot Validation CLI
  * Validates _pathroot environment configuration
  *
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: PMPL-1.0
  */
 
 import { discover, validateDevtoolsRoot } from "./discovery.ts";

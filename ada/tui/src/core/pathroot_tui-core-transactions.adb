@@ -1,7 +1,7 @@
 --  _pathroot TUI - Transaction Protocol Body
 --  Handles command-line transaction protocol for scripting
 --
---  SPDX-License-Identifier: AGPL-3.0-or-later
+--  SPDX-License-Identifier: PMPL-1.0
 --  Copyright (C) 2025 Hyper Polymath
 
 with Ada.Text_IO;           use Ada.Text_IO;

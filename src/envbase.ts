@@ -2,7 +2,7 @@
  * _pathroot Envbase Module
  * Handles _envbase JSON parsing and manipulation
  *
- * SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-License-Identifier: PMPL-1.0
  */
 
 import { join } from "@std/path";

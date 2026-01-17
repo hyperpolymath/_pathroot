@@ -1,4 +1,7 @@
 = Ada Symlink Manager
+image:https://img.shields.io/badge/license-PMPL--1.0-blue.svg[License,link="https://github.com/hyperpolymath/palimpsest-license"]
+
+
 :author: Hyper Polymath
 :toc:
 :source-highlighter: rouge
@@ -121,7 +124,7 @@ end record;
 
 == License
 
-AGPL-3.0-or-later
+PMPL-1.0-or-later
 
 == Contributing
 

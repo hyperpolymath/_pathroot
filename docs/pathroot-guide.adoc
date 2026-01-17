@@ -338,7 +338,7 @@ PATHROOT:AUDIT:links
 This document is part of the _pathroot project.
 
 * Repository: https://gitlab.com/hyperpolymath/_pathroot
-* License: AGPL-3.0-or-later
+* License: PMPL-1.0-or-later
 * Build tool: Asciidoctor PDF
 
 To generate PDF:
