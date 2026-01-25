@@ -83,7 +83,6 @@ jobs:
         run: |
           DOMAIN=$(cat CNAME 2>/dev/null | tr -d '
 ')
-          if [ -n "$DOMAIN" ]; then
             echo "Checking DNS for $DOMAIN..."
             # CAA record
             dig +short CAA "$DOMAIN" | grep -q "issue" && echo "✅ CAA record" || echo "::warning::No CAA record"
