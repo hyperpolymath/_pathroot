@@ -1,5 +1,5 @@
 = Mustfile
-image:https://img.shields.io/badge/license-PMPL--1.0-blue.svg[License,link="https://github.com/hyperpolymath/palimpsest-license"]
+image:https://img.shields.io/badge/License-MPL_2.0-blue.svg[MPL-2.0-or-later,link="https://opensource.org/licenses/MPL-2.0"]
 
 
 
@@ -14,6 +14,12 @@ image:https://img.shields.io/badge/license-PMPL--1.0-blue.svg[License,link="http
 image:https://img.shields.io/badge/Standard-Rhodium-blue.svg[Rhodium Standard]
 image:https://img.shields.io/badge/Spec-Must--Spec--1.0-red.svg[Must-Spec]
 image:https://img.shields.io/badge/Config-Nickel--Augmented-green.svg[Nicaug]
+
+== License & Philosophy
+
+This project must declare **MPL-2.0-or-later** for platform/tooling compatibility.
+
+Philosophy: **Palimpsest**. The Palimpsest-MPL (PMPL) text is provided in `license/PMPL-1.0.txt`, and the canonical source is the palimpsest-license repository.
 
 [abstract]
 This repository conforms to the **Rhodium Standard**. It utilizes a type-safe, contract-driven orchestration layer via the **Mustfile** and **Nickel-Augmented (`nicaug`)** engine. Designed for deployment across Linux (Kinoite/Debian), Minix, macOS, iOS, Android, and Edge ASICs.
@@ -79,3 +85,14 @@ Refer to link:cookbook.adoc[cookbook.adoc] for exhaustive recipes, including usi
 
 ---
 _“Local tasks use Just; Global authority uses Must; Every permutation uses Nicaug.”_
+
+== OPSM Link
+
+[source]
+----
+OPSM Core
+  |
+  v
+_pathroot (Path and environment layout for OPSM)
+
+----

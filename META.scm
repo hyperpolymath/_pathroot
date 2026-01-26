@@ -1,4 +1,4 @@
-;; SPDX-License-Identifier: PMPL-1.0
+;; SPDX-License-Identifier: MPL-2.0-or-later
 ;; SPDX-FileCopyrightText: 2025 Jonathan D.A. Jewell
 ;;; META.scm — rsr-template-repo
 
@@ -22,3 +22,5 @@
 
 (define design-rationale
   '((why-rsr "RSR ensures consistency, security, and maintainability.")))
+
+(define opsm-link "OPSM link: Path and environment layout for OPSM.")
