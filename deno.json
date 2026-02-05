@@ -18,7 +18,7 @@
     "@std/fs": "jsr:@std/fs@^1",
     "@std/json": "jsr:@std/json@^1",
     "@std/cli": "jsr:@std/cli@^1",
-    "@rescript/runtime/": "npm:@rescript/core@1.7.0/"
+    "@rescript/runtime/lib/es6/": "./src/runtime-shims/"
   },
   "fmt": {
     "useTabs": false,
