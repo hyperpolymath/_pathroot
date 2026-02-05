@@ -78,17 +78,11 @@
 - Platform detection functional
 - Sample Mustfile tested
 
-### 4. 22-Shell Compatibility Matrix (COMPLETE ✅)
-**Status:** All 22 shells implemented
+### 4. Shell Compatibility
+**Status:** Handled via just/must (no custom scripts needed)
 
-**Note:** This may not be necessary - can be handled via just/must instead.
-However, complete implementation exists at `scripts/all-shells/` if needed.
-
-**Implemented:**
-- ✅ 22 shell-specific entry scripts
-- ✅ Shell detection & routing
-- ✅ Test suite (bash & Julia)
-- ✅ Complete documentation
+Shell compatibility is managed through the just command runner
+and must deployment system, which already support multiple shells.
 
 ## Architecture Map
 
@@ -130,11 +124,9 @@ Current State:
 └─────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────┐
-│ 22-Shell Matrix (100% Complete)        │
-│ ✅ All 22 shell scripts                 │
-│ ✅ Shell detection router               │
-│ ✅ Testing automation                   │
-│ Note: May not be needed (just/must ok) │
+│ Shell Compatibility                     │
+│ ✅ Handled via just/must                │
+│ No custom shell scripts needed          │
 └─────────────────────────────────────────┘
 ```
 
