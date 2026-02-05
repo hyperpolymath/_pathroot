@@ -5,8 +5,8 @@
 --  Copyright (C) 2025 Hyper Polymath
 
 with Ada.Directories;
-with Ada.Text_IO;
 with GNAT.OS_Lib;
+with Pathroot_TUI.Core.POSIX_Links;
 
 package body Pathroot_TUI.Core.Links is
 
@@ -35,16 +35,16 @@ package body Pathroot_TUI.Core.Links is
    ---------------------
 
    function Get_Link_Target (Link_Path : String) return String is
-      use GNAT.OS_Lib;
-      Buffer : String (1 .. Max_Path_Length);
-      Last   : Natural;
+      Max_Path : constant := 4096;  --  Standard POSIX path limit
+      Buffer   : String (1 .. Max_Path);
+      Last     : Natural;
    begin
       if not Is_Symbolic_Link (Link_Path) then
          return "";
       end if;
 
-      --  Read the symbolic link target
-      Last := GNAT.OS_Lib.Read_Symbolic_Link (Link_Path, Buffer);
+      --  Read the symbolic link target using POSIX binding
+      Last := POSIX_Links.Read_Symlink (Link_Path, Buffer);
       if Last > 0 then
          return Buffer (1 .. Last);
       else
@@ -64,7 +64,6 @@ package body Pathroot_TUI.Core.Links is
       Target_Path : String;
       Error_Msg   : out Unbounded_String) return Boolean
    is
-      use GNAT.OS_Lib;
       Success : Boolean;
    begin
       Error_Msg := Null_Unbounded_String;
@@ -108,8 +107,8 @@ package body Pathroot_TUI.Core.Links is
             return False;
       end;
 
-      --  Create the symbolic link using GNAT.OS_Lib
-      GNAT.OS_Lib.Create_Symbolic_Link (Target_Path, Link_Path, Success);
+      --  Create the symbolic link using POSIX binding
+      Success := POSIX_Links.Create_Symlink (Target_Path, Link_Path);
 
       if not Success then
          Error_Msg := To_Unbounded_String (
@@ -119,7 +118,7 @@ package body Pathroot_TUI.Core.Links is
 
       return True;
    exception
-      when E : others =>
+      when others =>
          Error_Msg := To_Unbounded_String ("Unexpected error creating link");
          return False;
    end Create_Link;
@@ -185,7 +184,7 @@ package body Pathroot_TUI.Core.Links is
       end if;
 
       --  Scan all entries in bin directory
-      Start_Search (Search, Bin_Path, "*", (others => True));
+      Start_Search (Search, Bin_Path, "*", [others => True]);
 
       while More_Entries (Search) loop
          Get_Next_Entry (Search, Dir_Ent);
