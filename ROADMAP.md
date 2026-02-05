@@ -1,148 +1,192 @@
-# Roadmap
+# _pathroot Roadmap
 
-This document outlines the security and development roadmap for this template repository.
-
-## Current Status
-
-### Completed Security Measures
-
-- [x] **SHA-pinned GitHub Actions** - All workflow actions use commit SHA instead of version tags
-- [x] **CodeQL Analysis** - Automated static analysis for JavaScript/TypeScript (expandable to other languages)
-- [x] **Dependabot Configuration** - Automated dependency updates for multiple ecosystems
-- [x] **Security Policy** - Comprehensive SECURITY.md with vulnerability reporting guidelines
-- [x] **CODEOWNERS** - Mandatory code review requirements for security-critical files
-- [x] **Issue Templates** - Structured issue reporting with security advisory links
-- [x] **Secret Detection** - Gitleaks integration for preventing credential leaks
-- [x] **Dependency Review** - Automated review of dependency changes in PRs
-- [x] **RSR-compliant .gitignore** - Prevents accidental secret commits
-- [x] **Security Validation Workflow** - Automated checks for security file integrity
+**Project:** Mustfile - Global Devtools Authority
+**Current Version:** 1.0.0
+**Status:** Released (2026-02-05)
 
 ---
 
-## Roadmap
+## Released: v1.0.0 (2026-02-05)
 
-### Phase 1: Foundation Security (Current)
+### ✅ Core Features
+- [x] Mustfile specification complete
+- [x] Global `_pathroot` marker system
+- [x] `_envbase` JSON metadata format
+- [x] 22-shell compatibility matrix
+- [x] Cross-platform discovery (Windows, Linux, macOS, WSL, Android, Minix)
+- [x] ReScript/Deno implementation (624 lines)
+- [x] Rust mustorch orchestrator (825 lines)
+- [x] Ada TUI with GNAT 15.2.1 compatibility
+- [x] POSIX symlink bindings for modern GNAT
+- [x] Comprehensive documentation
 
-Focus: Establish baseline security controls for the template repository.
+### ✅ Platform Support
+- [x] Windows (batch, PowerShell)
+- [x] Linux (bash, POSIX)
+- [x] macOS (bash, zsh)
+- [x] WSL
+- [x] Android (Termux)
+- [x] Minix
 
-#### Completed
-- [x] SHA-pin all GitHub Actions to specific commits
-- [x] Configure Dependabot for all relevant package ecosystems
-- [x] Create comprehensive security policy (SECURITY.md)
-- [x] Set up CODEOWNERS for mandatory reviews
-- [x] Add secret scanning with Gitleaks
-- [x] Add dependency review for PRs
-- [x] Configure issue templates with security links
-- [x] Disable blank issues to enforce structured reporting
-
-#### In Progress
-- [ ] Enable GitHub branch protection rules (requires manual setup)
-- [ ] Configure required status checks for main branch
-
-#### Recommended Manual Steps
-These require repository admin access:
-1. **Enable branch protection** on `main`:
-   - Require pull request reviews (1+ approvals)
-   - Require status checks to pass
-   - Require branches to be up to date
-   - Include administrators
-   - Restrict force pushes
-
-2. **Enable security features** in repository settings:
-   - Enable Dependabot alerts
-   - Enable Dependabot security updates
-   - Enable secret scanning
-   - Enable push protection for secrets
+### ✅ Ada TUI
+- [x] Interactive management interface
+- [x] Transaction mode for scripting
+- [x] GNAT 15.2.1+ compatibility
+- [x] POSIX C bindings for symlinks
+- [x] Zero compilation errors/warnings
 
 ---
 
-### Phase 2: Enhanced Security
+## v1.1.0 (Q2 2026) - Enhanced Discovery
 
-Focus: Add advanced security tooling and compliance checks.
+### Planned Features
+- [ ] Python binding library
+- [ ] Ruby binding library
+- [ ] Zig native implementation
+- [ ] Discovery caching for performance
+- [ ] Multi-root support (multiple devtools locations)
+- [ ] Version negotiation protocol
 
-#### Planned
-- [ ] Add SBOM (Software Bill of Materials) generation
-- [ ] Integrate container scanning (if using containers)
-- [ ] Add license compliance checking
-- [ ] Implement signed commits requirement workflow
-- [ ] Add SLSA provenance generation for releases
-- [ ] Create security scorecard workflow (OpenSSF Scorecard)
+### Ada TUI Enhancements
+- [ ] Color terminal output
+- [ ] Interactive symlink repair wizard
+- [ ] Batch symlink operations
+- [ ] Environment validation reports
+- [ ] Shell integration helpers
 
-#### Future Considerations
-- [ ] SARIF upload integration for security findings
-- [ ] Custom CodeQL queries for project-specific vulnerabilities
-- [ ] Integration with private vulnerability reporting
-
----
-
-### Phase 3: Operational Security
-
-Focus: Runtime and operational security measures.
-
-#### Planned
-- [ ] Add release signing workflow
-- [ ] Create security-focused release checklist
-- [ ] Implement audit logging for sensitive operations
-- [ ] Add security metrics dashboard
+### Documentation
+- [ ] Video walkthrough
+- [ ] Docker/Podman examples
+- [ ] CI/CD integration guide
+- [ ] VSCode extension tutorial
 
 ---
 
-## Language-Specific Security
+## v1.2.0 (Q3 2026) - Integration Layer
 
-When adapting this template, enable relevant security tools:
+### must Integration
+- [ ] Direct `must` binary integration
+- [ ] Template-based scaffolding
+- [ ] Automated environment setup
+- [ ] Project bootstrapping
 
-### Rust
-```yaml
-# In codeql.yml, uncomment:
-- language: rust
-  build-mode: manual
-```
-- Enable `cargo audit` in CI
-- Add `cargo deny` for license/vulnerability checks
+### Tooling Support
+- [ ] Guix package definition
+- [ ] Nix flake
+- [ ] Homebrew formula
+- [ ] Scoop manifest
+- [ ] Chocolatey package
 
-### JavaScript/TypeScript
-- Already enabled in CodeQL
-- Consider adding `npm audit` to CI
-- Add ESLint security rules
-
-### Python
-```yaml
-# In codeql.yml, uncomment:
-- language: python
-  build-mode: none
-```
-- Add `bandit` for Python security linting
-- Add `safety` for dependency vulnerability scanning
-
-### Go
-```yaml
-# In codeql.yml, uncomment:
-- language: go
-  build-mode: autobuild
-```
-- Add `govulncheck` for vulnerability scanning
-- Add `gosec` for security linting
-
-### Elixir
-- Add `sobelow` for security analysis
-- Add `mix audit` for dependency vulnerabilities
+### API Stability
+- [ ] Stable ReScript API (1.0)
+- [ ] Stable Ada TUI protocol
+- [ ] JSON schema versioning
+- [ ] Migration guides
 
 ---
 
-## Security Contacts
+## v2.0.0 (Q4 2026) - Enterprise Features
 
-- **Report vulnerabilities**: [Security Advisories](https://github.com/hyperpolymath/template-repo/security/advisories/new)
-- **Security policy**: [SECURITY.md](SECURITY.md)
-- **Questions**: [GitHub Discussions](https://github.com/hyperpolymath/template-repo/discussions)
+### Advanced Discovery
+- [ ] Network-mounted devtools
+- [ ] Cloud storage discovery
+- [ ] Container environment detection
+- [ ] Multi-tenant support
+
+### Security
+- [ ] Signed `_pathroot` files
+- [ ] Integrity verification
+- [ ] Audit logging
+- [ ] Access control policies
+
+### Monitoring
+- [ ] Health check API
+- [ ] Usage metrics
+- [ ] Environment drift detection
+- [ ] Automated remediation
+
+---
+
+## Future Considerations
+
+### Platform Expansion
+- [ ] FreeBSD support
+- [ ] OpenBSD support
+- [ ] Haiku OS support
+- [ ] Plan 9 support
+
+### Language Bindings
+- [ ] C/C++ header library
+- [ ] Go module
+- [ ] Elixir/Erlang library
+- [ ] OCaml module
+- [ ] Haskell package
+
+### Ecosystem
+- [ ] VS Code extension
+- [ ] JetBrains IDE plugin
+- [ ] Emacs package
+- [ ] Vim/Neovim plugin
+
+---
+
+## Completed Milestones
+
+### Phase 1: Specification (Q4 2025)
+**Status:** ✅ Complete
+
+- Defined Mustfile format
+- Established `_pathroot` / `_envbase` contract
+- Documented 22-shell matrix
+- Created reference implementation
+
+### Phase 2: TypeScript → ReScript Migration (Q1 2026)
+**Status:** ✅ Complete
+
+- Converted all TypeScript to ReScript (519 lines)
+- Implemented nicaug engine (624 lines)
+- Created Deno runtime shims
+- Zero runtime type errors
+
+### Phase 3: Ada TUI Modernization (Q1 2026)
+**Status:** ✅ Complete (2026-02-05)
+
+- GNAT 15.2.1 compatibility
+- POSIX symlink bindings
+- Removed deprecated `GNAT.OS_Lib` functions
+- Clean compilation
+
+---
+
+## Known Limitations
+
+### Current
+- Single devtools root per filesystem
+- JSON-only metadata format
+- No built-in migration tools
+- Manual shell integration required
+
+### Future Resolution
+These limitations will be addressed in future versions based on user feedback and real-world usage patterns.
+
+---
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for how to contribute to this roadmap.
+
+Feature requests: [GitHub Issues](https://github.com/hyperpolymath/_pathroot/issues)
 
 ---
 
 ## Version History
 
-| Date | Version | Changes |
-|------|---------|---------|
-| 2025-12-17 | 1.0.0 | Initial security roadmap |
+| Version | Date | Milestone |
+|---------|------|-----------|
+| 1.0.0 | 2026-02-05 | Initial release with full platform support |
+| 1.0.0-rc1 | 2025-12-27 | Release candidate |
+| 0.9.0 | 2025-12-15 | Beta with ReScript implementation |
 
 ---
 
-*This roadmap is subject to change based on security landscape evolution and project needs.*
+*Roadmap subject to change based on community feedback and evolving requirements.*

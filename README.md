@@ -114,7 +114,7 @@ See [Integration Guide](wiki/Integration.md) for details.
 The Ada-based TUI provides interactive management:
 
 ```bash
-# Build (requires GNAT)
+# Build (requires GNAT 15.2.1+)
 cd ada/tui && gprbuild -P pathroot_tui.gpr
 
 # Run
@@ -123,6 +123,8 @@ cd ada/tui && gprbuild -P pathroot_tui.gpr
 # Transaction mode (for scripting)
 echo "PATHROOT:QUERY:ENV" | ./pathroot-tui --transaction
 ```
+
+**GNAT 15.2.1+ Compatibility:** The TUI now uses POSIX bindings for symbolic link operations, replacing deprecated `GNAT.OS_Lib` functions. All modules compile with zero errors on modern GNAT versions.
 
 ## Building the PDF
 
