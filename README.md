@@ -41,9 +41,12 @@ powershell -File scripts\windows\envbase.ps1
 eval $(./scripts/posix/pathroot.sh env)
 ```
 
-### Deno (Cross-platform)
+### Deno + ReScript (Cross-platform)
 
 ```bash
+# Build ReScript modules
+deno task build
+
 # Validate installation
 deno task validate
 
@@ -51,13 +54,20 @@ deno task validate
 deno add @pathroot/tools
 ```
 
-```typescript
-import { discover, loadEnvbase } from "@pathroot/tools";
-
-const result = await discover();
-if (result.found) {
-  const envbase = await loadEnvbase(result.devtoolsRoot!);
-  console.log(`Profile: ${envbase?.profile}`);
+```rescript
+// ReScript usage
+let result = await Discovery.discover()
+if result.found {
+  switch result.devtoolsRoot {
+  | Some(root) => {
+      let envbase = await Envbase.loadEnvbase(root)
+      switch envbase {
+      | Some(eb) => Js.log(`Profile: ${eb.profile}`)
+      | None => ()
+      }
+    }
+  | None => ()
+  }
 }
 ```
 
@@ -89,7 +99,7 @@ C:\_pathroot    # Global root marker
 | `scripts/windows/` | Windows batch and PowerShell scripts |
 | `scripts/posix/` | Bash scripts for Linux/macOS/WSL |
 | `ada/tui/` | Ada-based Terminal User Interface |
-| `src/` | Deno/TypeScript library |
+| `src/` | ReScript library (compiles to JS for Deno runtime) |
 
 ## Integration
 

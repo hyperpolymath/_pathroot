@@ -2,14 +2,16 @@
   "$schema": "https://deno.land/x/deno/cli/schemas/config-file.v1.json",
   "name": "@pathroot/tools",
   "version": "0.1.0",
-  "exports": "./mod.ts",
+  "exports": "./src/Mod.mjs",
   "tasks": {
-    "check": "deno check src/**/*.ts",
+    "build": "rescript build",
+    "clean": "rescript clean",
+    "watch": "rescript build -w",
     "test": "deno test --allow-read --allow-write --allow-env",
-    "lint": "deno lint",
-    "fmt": "deno fmt",
+    "lint": "deno lint src/**/*.mjs",
+    "fmt": "rescript format -all",
     "build:pdf": "deno run --allow-read --allow-write scripts/build-pdf.ts",
-    "validate": "deno run --allow-read --allow-env src/validate.ts"
+    "validate": "deno run --allow-read --allow-env src/Validate.mjs"
   },
   "imports": {
     "@std/path": "jsr:@std/path@^1",
@@ -17,22 +19,18 @@
     "@std/json": "jsr:@std/json@^1",
     "@std/cli": "jsr:@std/cli@^1"
   },
-  "compilerOptions": {
-    "strict": true,
-    "noImplicitAny": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true
-  },
   "fmt": {
     "useTabs": false,
     "lineWidth": 100,
     "indentWidth": 2,
-    "singleQuote": false
+    "singleQuote": false,
+    "exclude": ["src/**/*.res", "src/**/*.resi"]
   },
   "lint": {
     "rules": {
       "tags": ["recommended"],
       "include": ["ban-untagged-todo", "no-console"]
-    }
+    },
+    "exclude": ["src/**/*.res", "src/**/*.resi"]
   }
 }
