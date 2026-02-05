@@ -69,6 +69,15 @@
 
   (session-history
     ((date "2026-02-05")
+     (milestone "Ada TUI GNAT 15.2.1 Compatibility")
+     (actions
+       ("Implemented POSIX symlink bindings for GNAT 15.2.1"
+        "Created pathroot_tui-core-posix_links package with C bindings"
+        "Replaced missing GNAT.OS_Lib.Read_Symbolic_Link"
+        "Replaced missing GNAT.OS_Lib.Create_Symbolic_Link"
+        "Fixed obsolescent array aggregate syntax"
+        "Zero compilation errors, zero warnings")))
+    ((date "2026-02-05")
      (milestone "v1.0.0 Release")
      (actions
        ("Converted all TypeScript files to ReScript (5 files, 519 lines)"
