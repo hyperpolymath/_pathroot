@@ -43,6 +43,14 @@
     (bindings "posix-symlinks")
     (build-status "zero-errors"))
 
+  (abi-ffi-standard
+    (implementation "universal-idris2-zig")
+    (abi-layer "idris2-with-dependent-types")
+    (ffi-layer "zig-memory-safe")
+    (verification "formal-proofs-included")
+    (c-code "none")
+    (header-files "none"))
+
   (opsm-integration
     (relationship "core")
     (description "Path and environment layout for OPSM.")

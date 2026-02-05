@@ -126,6 +126,12 @@ echo "PATHROOT:QUERY:ENV" | ./pathroot-tui --transaction
 
 **GNAT 15.2.1+ Compatibility:** The TUI now uses POSIX bindings for symbolic link operations, replacing deprecated `GNAT.OS_Lib` functions. All modules compile with zero errors on modern GNAT versions.
 
+**ABI/FFI Architecture:** Implements the universal Idris2 ABI + Zig FFI standard:
+- **Idris2 ABI**: Dependent type proofs for path length validation and interface correctness
+- **Zig FFI**: Memory-safe POSIX symlink implementation with zero overhead
+- **No C code, no header files**: Pure verified implementations
+- See [ABI-FFI-SYMLINKS.md](ABI-FFI-SYMLINKS.md) for complete documentation
+
 ## Building the PDF
 
 ```bash

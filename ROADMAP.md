@@ -32,7 +32,9 @@
 - [x] Interactive management interface
 - [x] Transaction mode for scripting
 - [x] GNAT 15.2.1+ compatibility
-- [x] POSIX C bindings for symlinks
+- [x] Universal ABI/FFI standard (Idris2 + Zig)
+- [x] Formal verification with dependent types
+- [x] Memory-safe Zig FFI implementation
 - [x] Zero compilation errors/warnings
 
 ---
