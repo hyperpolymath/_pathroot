@@ -57,6 +57,8 @@ __pycache__/
 *.ali
 /obj/
 /bin/
+ada/tui/obj/
+ada/tui/bin/
 
 # Haskell
 /.stack-work/

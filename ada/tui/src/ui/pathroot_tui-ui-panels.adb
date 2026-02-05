@@ -7,6 +7,7 @@
 with Ada.Text_IO;            use Ada.Text_IO;
 with Ada.Environment_Variables;
 with Ada.Strings.Fixed;      use Ada.Strings.Fixed;
+with Ada.Strings.Unbounded;  use Ada.Strings.Unbounded;
 
 package body Pathroot_TUI.UI.Panels is
 

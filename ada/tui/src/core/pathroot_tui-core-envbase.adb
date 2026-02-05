@@ -22,8 +22,8 @@ package body Pathroot_TUI.Core.Envbase is
    begin
       --  Handle both Windows and POSIX path separators
       if Devtools_Root'Length > 0 and then
-         Devtools_Root (Devtools_Root'Last) = '/' or
-         Devtools_Root (Devtools_Root'Last) = '\'
+         (Devtools_Root (Devtools_Root'Last) = '/' or else
+          Devtools_Root (Devtools_Root'Last) = '\')
       then
          return Devtools_Root & "_envbase";
       else

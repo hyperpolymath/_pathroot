@@ -51,8 +51,9 @@ package body Pathroot_TUI is
       --  Discover _pathroot
       if not Discover_Pathroot (Pathroot_File, Devtools_Root) then
          Put_Line (Standard_Error, "ERROR: _pathroot not found");
-         Put_Line (Standard_Error, "Run 'automkdir.bat' (Windows) or 'pathroot.sh init' (POSIX) first.");
-         Set_Exit_Status (Exit_Failure (Exit_No_Pathroot));
+         Put_Line (Standard_Error,
+           "Run 'automkdir.bat' (Windows) or 'pathroot.sh init' (POSIX) first.");
+         Set_Exit_Status (Exit_No_Pathroot);
          return;
       end if;
 
@@ -78,7 +79,7 @@ package body Pathroot_TUI is
             Finalize_UI;
       end case;
 
-      Set_Exit_Status (Exit_Failure (Exit_Success));
+      Set_Exit_Status (Exit_Success);
    end Run;
 
    ---------------------

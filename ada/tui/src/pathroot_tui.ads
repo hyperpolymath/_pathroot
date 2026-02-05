@@ -36,4 +36,7 @@ package Pathroot_TUI is
    --  Run in transaction mode (for scripting)
    procedure Run_Transaction;
 
+   --  Print help message
+   procedure Print_Help;
+
 end Pathroot_TUI;
