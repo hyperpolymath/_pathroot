@@ -33,6 +33,7 @@ install_tool() {
     # In a production RSR, point these to your specific mirrors
     case $tool in
         "just")
+# WARNING: Pipe-to-shell is unsafe — download and verify first
             curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to "$BIN_DIR"
             ;;
         "must")
