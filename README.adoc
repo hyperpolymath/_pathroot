@@ -1,8 +1,5 @@
-= Mustfile
-image:https://img.shields.io/badge/License-MPL_2.0-blue.svg[MPL-2.0-or-later,link="https://opensource.org/licenses/MPL-2.0"]
-
-
-
+= _pathroot
+image:[MPL-2.0-or-later,link="https://opensource.org/licenses/MPL-2.0"]
 
 :author: hyperpolymath
 :revnumber: 1.0.0
@@ -11,13 +8,12 @@ image:https://img.shields.io/badge/License-MPL_2.0-blue.svg[MPL-2.0-or-later,lin
 :toclevels: 3
 :icons: font
 
-image:https://img.shields.io/badge/Standard-Rhodium-blue.svg[Rhodium Standard]
+image:[Rhodium Standard]
 image:https://img.shields.io/badge/Spec-Must--Spec--1.0-red.svg[Must-Spec]
 image:https://img.shields.io/badge/Config-Nickel--Augmented-green.svg[Nicaug]
 
 == License & Philosophy
 
-This project must declare **MPL-2.0-or-later** for platform/tooling compatibility.
 
 Philosophy: **Palimpsest**. The Palimpsest-MPL (PMPL) text is provided in `license/PMPL-1.0.txt`, and the canonical source is the palimpsest-license repository.
 
